@@ -70,3 +70,5 @@ As versões do núcleo, da documentação e das integrações são registradas s
 **Projeto original:** [Traccar](https://github.com/traccar/traccar), seus autores e colaboradores. O código original permanece sujeito à **Apache License 2.0**, conforme [LICENSE.txt](LICENSE.txt). O fork preserva os créditos e avisos de licença do projeto de origem.
 
 **Uso responsável:** dados de localização podem ser sensíveis. Rastreie somente dispositivos e pessoas com autorização adequada, respeitando a legislação aplicável e as políticas de privacidade.
+
+**Aplicativos moveis:** [Guia de envio de GPS do celular sem Bridge ou Geo Intelligence](manuais/17-integracao-celular-gps.md).
