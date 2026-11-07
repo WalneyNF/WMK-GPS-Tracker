@@ -15,7 +15,7 @@ Cada teste exige comando, resultado esperado, resultado observado e decisão. A 
 | TR-003 | Testar login e permissões | Não executado nesta revisão | PENDENTE |
 | TR-004 | Testar ingestão e posições | Não executado nesta revisão | PENDENTE |
 | TR-005 | Testar frontend React e mapas | Não executado nesta revisão | PENDENTE |
-| TR-006 | Compilar e executar testes Gradle | Não executado nesta revisão; Java do PATH precisa ser corrigido | PENDENTE |
+| TR-006 | Compilar e executar testes Gradle | JDK 23 localizado em D:\jdk. Gradle test --offline falhou: plugin com.google.protobuf 0.10.0 ausente no cache | BLOQUEADO |
 | TR-007 | Validar integração real com Geo Bridge | Não executado nesta revisão | PENDENTE |
 | TR-008 | Conferir arquivos README e manuais | Arquivos obrigatórios presentes, links do índice confirmados e acentuação UTF-8 validada | APROVADO |
 
@@ -26,3 +26,6 @@ Corrigir a seleção do JDK sem instalar nada no disco C: e sem modificar os pro
 ## Cuidados
 
 A pasta `laboratorio-gps/` contém dados de simulação e não deve ser publicada automaticamente. O frontend `traccar-web` é um submódulo com alterações locais ainda não versionadas em fork próprio.
+
+## Diagnóstico complementar
+Em 06/11/2026, JDK 23.0.1 em D:\jdk foi validado. A execução de gradlew.bat test --offline --no-daemon terminou com código 1 porque o plugin Gradle com.google.protobuf 0.10.0 não estava disponível offline. O servidor Java já em execução continuou respondendo HTTP 200. Nenhum download de dependência foi realizado nesta tentativa.
