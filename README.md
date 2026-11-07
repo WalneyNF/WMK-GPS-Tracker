@@ -32,6 +32,8 @@ O WMK GPS Tracker é uma plataforma de rastreamento para veículos e outros ativ
 
 **Todos os manuais:** [Central de documentação em português](manuais/index.html).
 
+**Regra permanente:** [Padrão de documentação WMK](manuais/PADRAO-DOCUMENTACAO-WMK.md) — guias para leigos, desenvolvedores e administradores, integração móvel, testes e atribuições.
+
 ### Execução local
 
 A instalação depende do ambiente e da configuração de banco de dados. Para o laboratório Windows já configurado, a interface é acessada em `http://127.0.0.1:8082/` **enquanto o servidor estiver ativo**.
