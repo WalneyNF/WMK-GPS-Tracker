@@ -72,3 +72,18 @@ As versões do núcleo, da documentação e das integrações são registradas s
 **Uso responsável:** dados de localização podem ser sensíveis. Rastreie somente dispositivos e pessoas com autorização adequada, respeitando a legislação aplicável e as políticas de privacidade.
 
 **Aplicativos moveis:** [Guia de envio de GPS do celular sem Bridge ou Geo Intelligence](manuais/17-integracao-celular-gps.md).
+
+
+## Funcionamento independente e integrado — suíte WMK
+
+**Este projeto funciona de maneira independente:** não é obrigatório instalar os outros dois projetos WMK para usar suas funções principais.
+
+**Modo independente — WMK GPS Tracker:** Recebe e armazena posições GPS e oferece API e interface sem precisar dos outros dois produtos.
+
+**Modo integrado (opcional):** Pode fornecer dispositivos e posições ao Bridge e, futuramente, ao mapa 3D. A integração ponta a ponta ainda precisa ser validada.
+
+**Projetos relacionados:** [WMK GPS Tracker](https://github.com/WalneyNF/WMK-GPS-Tracker) · [WMK Geo Bridge](https://github.com/WalneyNF/WMK-Geo-Bridge) · [WMK Geo Intelligence](https://github.com/WalneyNF/WMK-Geo-Intelligence).
+
+**Situação dos testes:** os serviços responderam individualmente no laboratório, mas a integração ponta a ponta ainda não está aprovada. Consulte os manuais e os testes antes de disponibilizar dados privados.
+
+**Documentação:** [padrão WMK](manuais/PADRAO-DOCUMENTACAO-WMK.md). Créditos das contribuições WMK: **Walney Moreira Klein — walneyk@hotmail.com**. Preserve também as licenças e os avisos dos autores originais.
