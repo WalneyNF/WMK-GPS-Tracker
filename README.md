@@ -1,61 +1,70 @@
-# [Traccar](https://www.traccar.org)
+# WMK GPS Tracker
 
-## Overview
+**Plataforma de rastreamento GPS baseada no Traccar — fork mantido por Walney Moreira Klein**
 
-Traccar is a free, open source GPS tracking platform. This repository contains the Java-based back-end server, which supports more than 200 GPS protocols and 2000+ models of GPS tracking devices out of the box. Traccar works with any major SQL database and provides an easy to use [REST API](https://www.traccar.org/traccar-api/).
+[![Documentação](https://img.shields.io/badge/documentação-pt--BR-16803c)](manuais/index.html)
+[![API](https://img.shields.io/badge/API-OpenAPI-blue)](openapi.yaml)
+[![Licença](https://img.shields.io/badge/licença-Apache--2.0-lightgrey)](LICENSE.txt)
 
-Traccar is built for anyone who needs to track vehicles, assets, or people: fleet operators, GPS tracking resellers running their own white-label platform, and individuals tracking their own devices. You can [self-host it for free](https://www.traccar.org/install-vps/), or use [official managed hosting](https://www.traccar.org/pricing/) if you'd rather not run a server yourself.
+> **Situação do projeto:** fork em evolução. O núcleo GPS permanece baseado no **Traccar 6.17.0** (versão identificada no servidor local em 06/11/2026). A personalização WMK ainda está em desenvolvimento. Não confunda a versão do produto original com as versões da documentação WMK.
 
-| Web Dashboard |
-|---|
-| ![Traccar web dashboard](.github/screenshot.png) |
+## Para que serve?
 
-Other parts of the Traccar platform:
+O WMK GPS Tracker é uma plataforma de rastreamento para veículos e outros ativos. Seu núcleo Traccar recebe posições de dispositivos compatíveis, armazena dados, disponibiliza mapa, eventos e relatórios e oferece uma API para integração com outros sistemas.
 
-- [Traccar web app](https://github.com/traccar/traccar-web) - the browser-based tracking dashboard
-- [Traccar Manager app](https://github.com/traccar/traccar-manager) - mobile app for viewing your tracked devices
+É destinado a usuários individuais, administradores de frotas e desenvolvedores que desejam estudar, hospedar e ampliar uma solução de rastreamento de código aberto.
 
-There is also a set of mobile apps for tracking mobile devices themselves:
+### Recursos existentes no núcleo Traccar
 
-- [Traccar Client app](https://github.com/traccar/traccar-client)
+- Cadastro e gerenciamento de dispositivos e usuários.
+- Recebimento de posições GPS por protocolos compatíveis.
+- Mapas, histórico, relatórios, eventos e geocercas (dependem de configuração e permissões).
+- API HTTP e comunicação em tempo real do Traccar.
+- Servidor Java com banco de dados configurável.
 
-## Quick Start
+**Não são recursos concluídos do fork WMK:** tradução integral da interface, API pública WMK independente, painel próprio definitivo e integração ponta a ponta com WMK Geo Intelligence.
 
-Run Traccar with a production-grade MySQL database using Docker Compose:
+## Comece aqui
 
-```shell
-curl -o compose.yaml https://raw.githubusercontent.com/traccar/traccar/master/docker/compose/traccar-mysql.yaml
-docker compose up -d
-```
+**Usuários comuns:** leia [Manual do usuário](manuais/15-manual-usuario-wmk.html). Ele explica os conceitos, o primeiro acesso, como cadastrar um dispositivo, entender as posições e resolver problemas frequentes.
 
-Traccar will be available on port `8082`. See the [Docker documentation](https://www.traccar.org/docker/) for other configuration options, or [try the live demo](https://www.traccar.org/demo-server/) without installing anything.
+**Desenvolvedores:** leia [Manual do desenvolvedor](manuais/16-manual-desenvolvedor-wmk.html). Ele cobre arquitetura, submódulo frontend, API, autenticação, exemplos e testes.
 
-## Features
+**Todos os manuais:** [Central de documentação em português](manuais/index.html).
 
-Some of the available features include:
+### Execução local
 
-- Real-time GPS tracking
-- Driver behaviour monitoring
-- Detailed and summary reports
-- Geofencing functionality
-- Alarms and notifications
-- Account and device management
-- Email and SMS support
+A instalação depende do ambiente e da configuração de banco de dados. Para o laboratório Windows já configurado, a interface é acessada em `http://127.0.0.1:8082/` **enquanto o servidor estiver ativo**.
 
-## Build
+Não assuma que esse endereço funciona fora da máquina em que o Traccar foi instalado. Não publique a porta 8082 na internet sem TLS, autenticação e configuração de segurança.
 
-Please read the [build from source documentation](https://www.traccar.org/build/) on the official website.
+A resposta `GET /api/server` pode ser utilizada como diagnóstico básico do servidor; ela **não comprova** que um dispositivo está enviando posições ou que o usuário está autenticado.
 
-## Community
+## API e integrações
 
-- [Forums](https://www.traccar.org/forums/)
-- [Documentation](https://www.traccar.org/documentation/)
+A especificação original está em [openapi.yaml](openapi.yaml). A documentação oficial do Traccar também está disponível em [traccar.org/traccar-api](https://www.traccar.org/traccar-api/).
 
-## Team
+O WMK GPS Tracker poderá trabalhar de forma independente ou ser conectado ao [WMK Geo Bridge](https://github.com/WalneyNF/WMK-Geo-Bridge) e ao [WMK Geo Intelligence](https://github.com/WalneyNF/WMK-Geo-Intelligence). Essas integrações são opcionais e estão em desenvolvimento; a existência dos repositórios não significa que o fluxo completo já tenha sido testado.
 
-- Anton Tananaev ([anton@traccar.org](mailto:anton@traccar.org))
-- Andrey Kunitsyn ([andrey@traccar.org](mailto:andrey@traccar.org))
+## Desenvolvendo este fork
 
-## License
+O código do servidor está neste repositório. A interface web React está no **submódulo Git** `traccar-web`, atualmente vinculado ao projeto upstream. Modificações locais nesse submódulo **não são publicadas automaticamente** quando se faz push do servidor.
 
-Apache License, Version 2.0. See [LICENSE.txt](https://github.com/traccar/traccar/blob/master/LICENSE.txt) for details.
+Para estudar a estrutura e a compilação, consulte o manual de desenvolvedor e a [documentação de build do Traccar](https://www.traccar.org/build/). Não faça `git submodule update --force` em uma cópia com modificações locais sem backup e revisão.
+
+## Versões e testes
+
+- **Núcleo identificado:** Traccar 6.17.0, pela resposta do servidor local.
+- **Documentação WMK:** revisão 0.2.0 — guias iniciais de usuário e desenvolvedor.
+- **Teste local confirmado nesta revisão:** `GET http://127.0.0.1:8082/api/server` → HTTP 200.
+- **Pendente:** validação integral do frontend React, autenticação, ingestão de posições, integração com Bridge e build completo nesta revisão. Consulte [relatório de testes](manuais/TESTES-WMK.md).
+
+As versões do núcleo, da documentação e das integrações são registradas separadamente para evitar anúncios de funcionalidades ainda não validadas.
+
+## Créditos e licença
+
+**Personalização, documentação e integração WMK:** Walney Moreira Klein — walneyk@hotmail.com.
+
+**Projeto original:** [Traccar](https://github.com/traccar/traccar), seus autores e colaboradores. O código original permanece sujeito à **Apache License 2.0**, conforme [LICENSE.txt](LICENSE.txt). O fork preserva os créditos e avisos de licença do projeto de origem.
+
+**Uso responsável:** dados de localização podem ser sensíveis. Rastreie somente dispositivos e pessoas com autorização adequada, respeitando a legislação aplicável e as políticas de privacidade.
